@@ -1,4 +1,4 @@
-# emuPiDoc
+# pidoc
 
 > A Virtualised Raspberry Pi inside a Docker image
 
@@ -9,25 +9,25 @@ This is not just a Raspian Docker image, it's a full ARM based Raspberry Pi virt
 ## Usage
 
 ```
-docker run -it mrhavens/emuPiDoc
+docker run -it mrhavens/pidoc
 ```
 
 By default all filesystem changes will be lost on shutdown. You can persist filesystem changes between reboots by mounting the `/sdcard` volume on your host:
 
 ```
-docker run -it -v $HOME/.emuPiDoc:/sdcard mrhavens/emuPiDoc
+docker run -it -v $HOME/.pidoc:/sdcard mrhavens/pidoc
 ```
 
 If you have a specific image you want to mount you can mount it at `/sdcard/filesystem.img`:
 
 ```
-docker run -it -v /2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img mrhavens/emuPiDoc
+docker run -it -v /2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img mrhavens/pidoc
 ```
 
 If you only want to mount your own image, you can download a much slimmer VM only Docker container that doesn't contain the Raspbian filesystem image:
 
 ```
-docker run -it -v /2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img mrhavens/emuPiDoc:vm
+docker run -it -v /2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img mrhavens/pidoc:vm
 ```
 
 ## Wait, what?
@@ -66,13 +66,13 @@ Swap:          99Mi          0B        99Mi
 Build this image yourself by checking out this repo, `cd` ing into it and running:
 
 ```
-docker build -t mrhavens/emuPiDoc .
+docker build -t mrhavens/pidoc .
 ```
 
 Build the VM only image with:
 
 ```
-docker build -t mrhavens/emuPiDoc:vm --target emuPiDoc -vm .
+docker build -t mrhavens/pidoc:vm --target pidoc -vm .
 ```
 
 ## Credit
