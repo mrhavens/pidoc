@@ -77,7 +77,7 @@ docker build -t mrhavens/emuPiDoc:vm --target emuPiDoc -vm .
 
 ## Credit
 
-Thanks to [@dhruvvyas90](https://github.com/dhruvvyas90) for his [dhruvvyas90/qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel) repo.
+Thanks to [@dhruvvyas90](https://github.com/dhruvvyas90) for his [dhruvvyas90/qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel) repo and @lukechilds for the original [lukechilds/dockerpi](https://github.com/lukechilds/dockerpi) repo.
 
 ## License
 
