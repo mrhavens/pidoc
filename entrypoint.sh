@@ -20,7 +20,7 @@ exec qemu-system-arm \
   --m 256M \
   --hda /sdcard/filesystem.img \
   --net nic \
-  --net user,hostfwd=tcp::5022-:22 \
+  --net user,hostfwd=tcp::2222-:22 \
   --dtb /root/qemu-rpi-kernel/versatile-pb.dtb \
   --kernel /root/qemu-rpi-kernel/kernel-qemu-4.19.50-buster \
   --append "root=/dev/sda2 panic=1" \
