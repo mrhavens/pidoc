@@ -1,3 +1,4 @@
+#########1#########2#########3#########4#########5#########6#########7#########8
 # Build stage for qemu-system-arm
 FROM debian:stable-slim AS qemu-system-arm-builder
 ARG QEMU_VERSION=4.2.0
@@ -34,9 +35,9 @@ RUN make -j$(nproc)
 RUN # Strip the binary, this gives a substantial size reduction!
 RUN strip "arm-softmmu/qemu-system-arm"
 
-
-# Build the dockerpi VM image
-FROM busybox:1.31 AS dockerpi-vm
+#########1#########2#########3#########4#########5#########6#########7#########8
+# Build the pidoc VM image
+FROM busybox:1.31 AS pidoc-vm
 LABEL maintainer="Mark Havens <mark.r.havens@gmail.com>"
 ARG RPI_KERNEL_URL="https://github.com/dhruvvyas90/qemu-rpi-kernel/archive/afe411f2c9b04730bcc6b2168cdc9adca224227c.zip"
 ARG RPI_KERNEL_CHECKSUM="295a22f1cd49ab51b9e7192103ee7c917624b063cc5ca2e11434164638aad5f4"
@@ -58,11 +59,11 @@ VOLUME /sdcard
 ADD ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
-
-# Build the dockerpi image
+#########1#########2#########3#########4#########5#########6#########7#########8
+# Build the pidoc image
 # It's just the VM image with a compressed Raspbian filesystem added
-FROM dockerpi-vm as dockerpi
-LABEL maintainer="Luke Childs <lukechilds123@gmail.com>"
+FROM pidoc-vm as pidoc
+LABEL maintainer="Mark Havens <mark.r.havens@gmail.com>"
 ARG FILESYSTEM_IMAGE_URL="http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-09-30/2019-09-26-raspbian-buster-lite.zip"
 ARG FILESYSTEM_IMAGE_CHECKSUM="a50237c2f718bd8d806b96df5b9d2174ce8b789eda1f03434ed2213bbca6c6ff"
 
