@@ -1,34 +1,37 @@
 #########1#########2#########3#########4#########5#########6#########7#########8
 # Build stage for qemu-system-arm
-FROM debian:stable-slim AS qemu-system-arm-builder
+#FROM debian:stable-slim AS qemu-system-arm-builder
+FROM ubuntu AS qemu-system-arm-builder
 ARG QEMU_VERSION=4.2.0
 ENV QEMU_TARBALL="qemu-${QEMU_VERSION}.tar.xz"
 WORKDIR /qemu
 
-RUN # Update package lists
-RUN apt-get update
+RUN apt-get update && \
+    apt-get -y install \
+                       wget \
+		       gpg \
+		       pkg-config \
+		       python \
+		       build-essential \
+                       libglib2.0-dev \
+		       libpixman-1-dev \
+                       libfdt-dev \
+		       zlib1g-dev \
+                       flex \
+                       bison
 
 RUN # Pull source
-RUN apt-get -y install wget
 RUN wget "https://download.qemu.org/${QEMU_TARBALL}"
 
 RUN # Verify signatures
-RUN apt-get -y install gpg
 RUN wget "https://download.qemu.org/${QEMU_TARBALL}.sig"
 RUN gpg --keyserver keyserver.ubuntu.com --recv-keys CEACC9E15534EBABB82D3FA03353C9CEF108B584
 RUN gpg --verify "${QEMU_TARBALL}.sig" "${QEMU_TARBALL}"
 
 RUN # Extract source tarball
-RUN apt-get -y install pkg-config
 RUN tar xvf "${QEMU_TARBALL}"
 
 RUN # Build source
-# These seem to be the only deps actually required for a successful  build
-RUN apt-get -y install python build-essential libglib2.0-dev libpixman-1-dev
-# These don't seem to be required but are specified here: https://wiki.qemu.org/Hosts/Linux
-RUN apt-get -y install libfdt-dev zlib1g-dev
-# Not required or specified anywhere but supress build warnings
-RUN apt-get -y install flex bison
 RUN "qemu-${QEMU_VERSION}/configure" --static --target-list=arm-softmmu
 RUN make -j$(nproc)
 
@@ -37,7 +40,8 @@ RUN strip "arm-softmmu/qemu-system-arm"
 
 #########1#########2#########3#########4#########5#########6#########7#########8
 # Build the pidoc VM image
-FROM busybox:1.31 AS pidoc-vm
+#FROM busybox:1.31 AS pidoc-vm
+FROM ubuntu as pidoc-vm
 LABEL maintainer="Mark Havens <mark.r.havens@gmail.com>"
 ARG RPI_KERNEL_URL="https://github.com/dhruvvyas90/qemu-rpi-kernel/archive/afe411f2c9b04730bcc6b2168cdc9adca224227c.zip"
 ARG RPI_KERNEL_CHECKSUM="295a22f1cd49ab51b9e7192103ee7c917624b063cc5ca2e11434164638aad5f4"
@@ -46,6 +50,10 @@ COPY --from=qemu-system-arm-builder /qemu/arm-softmmu/qemu-system-arm /usr/local
 
 ADD $RPI_KERNEL_URL /tmp/qemu-rpi-kernel.zip
 
+RUN apt-get update && \
+    apt-get -y install \
+			unzip \ 
+			expect
 RUN cd /tmp && \
     echo "$RPI_KERNEL_CHECKSUM  qemu-rpi-kernel.zip" | sha256sum -c && \
     unzip qemu-rpi-kernel.zip && \
@@ -68,5 +76,6 @@ ARG FILESYSTEM_IMAGE_URL="http://downloads.raspberrypi.org/raspbian_lite/images/
 ARG FILESYSTEM_IMAGE_CHECKSUM="a50237c2f718bd8d806b96df5b9d2174ce8b789eda1f03434ed2213bbca6c6ff"
 
 ADD $FILESYSTEM_IMAGE_URL /filesystem.zip
+ADD pi_ssh_enable.exp /pi_ssh_enable.exp
 
 RUN echo "$FILESYSTEM_IMAGE_CHECKSUM  /filesystem.zip" | sha256sum -c
