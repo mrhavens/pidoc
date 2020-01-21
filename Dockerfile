@@ -1,6 +1,4 @@
-#########1#########2#########3#########4#########5#########6#########7#########8
 # Build stage for qemu-system-arm
-#FROM debian:stable-slim AS qemu-system-arm-builder
 FROM ubuntu AS qemu-system-arm-builder
 ARG QEMU_VERSION=4.2.0
 ENV QEMU_TARBALL="qemu-${QEMU_VERSION}.tar.xz"
@@ -20,27 +18,25 @@ RUN apt-get update && \
                        flex \
                        bison
 
-RUN # Pull source
+RUN # Download source...
 RUN wget "https://download.qemu.org/${QEMU_TARBALL}"
 
-RUN # Verify signatures
+RUN # Verify signatures...
 RUN wget "https://download.qemu.org/${QEMU_TARBALL}.sig"
 RUN gpg --keyserver keyserver.ubuntu.com --recv-keys CEACC9E15534EBABB82D3FA03353C9CEF108B584
 RUN gpg --verify "${QEMU_TARBALL}.sig" "${QEMU_TARBALL}"
 
-RUN # Extract source tarball
+RUN # Extract tarball...
 RUN tar xvf "${QEMU_TARBALL}"
 
-RUN # Build source
+RUN # Build source...
 RUN "qemu-${QEMU_VERSION}/configure" --static --target-list=arm-softmmu
 RUN make -j$(nproc)
 
 RUN # Strip the binary, this gives a substantial size reduction!
 RUN strip "arm-softmmu/qemu-system-arm"
 
-#########1#########2#########3#########4#########5#########6#########7#########8
-# Build the pidoc VM image
-#FROM busybox:1.31 AS pidoc-vm
+# Build pidoc VM image
 FROM ubuntu as pidoc-vm
 LABEL maintainer="Mark Havens <mark.r.havens@gmail.com>"
 ARG RPI_KERNEL_URL="https://github.com/dhruvvyas90/qemu-rpi-kernel/archive/afe411f2c9b04730bcc6b2168cdc9adca224227c.zip"
@@ -67,9 +63,7 @@ VOLUME /sdcard
 ADD ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
-#########1#########2#########3#########4#########5#########6#########7#########8
 # Build the pidoc image
-# It's just the VM image with a compressed Raspbian filesystem added
 FROM pidoc-vm as pidoc
 LABEL maintainer="Mark Havens <mark.r.havens@gmail.com>"
 ARG FILESYSTEM_IMAGE_URL="http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-09-30/2019-09-26-raspbian-buster-lite.zip"
