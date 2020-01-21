@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  node:
+    image: pidoc 
+    ports: 
+      - "2201-2203:2222"

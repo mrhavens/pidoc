@@ -1,0 +1,8 @@
+---
+- name: Apt update Pi...
+  hosts: pidoc-cluster
+  tasks:
+    - name: Update apt cache...
+      become: yes
+      apt:
+        update_cache=yes

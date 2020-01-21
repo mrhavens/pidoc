@@ -1,0 +1,26 @@
+#!/usr/bin/expect -f
+set ipaddr [lindex $argv 0]
+set timeout -1
+spawn /usr/local/bin/qemu-system-arm \
+  --machine versatilepb \
+  --cpu arm1176 \
+  --m 256M \
+  --hda /sdcard/filesystem.img \
+  --net nic \
+  --net user,hostfwd=tcp:$ipaddr:2222-:22 \
+  --dtb /root/qemu-rpi-kernel/versatile-pb.dtb \
+  --kernel /root/qemu-rpi-kernel/kernel-qemu-4.19.50-buster \
+  --append "root=/dev/sda2 panic=1" \
+  --no-reboot \
+  --display none \
+  --serial mon:stdio 
+expect "raspberrypi login:"
+send -- "pi\r"
+expect "Password:"
+send -- "raspberry\r"
+expect "pi@raspberrypi:"
+send -- "sudo systemctl enable ssh\r"
+expect "pi@raspberrypi:"
+send -- "sudo systemctl start ssh\r"
+expect "pi@raspberrypi:"
+expect eof
