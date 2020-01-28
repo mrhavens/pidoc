@@ -2,7 +2,7 @@
 
 Please see main article [here](https://appfleet.com/blog/raspberry-pi-cluster-emulation-with-docker-compose/).
 
-## TL;DR
+## tl;dr
 
 An autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
 
