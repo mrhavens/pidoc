@@ -1,5 +1,7 @@
 # pidoc
 
+Please see main article [here](https://appfleet.com/blog/raspberry-pi-cluster-emulation-with-docker-compose/).
+
 ## TL;DR
 
 An autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
@@ -11,5 +13,3 @@ Stack:
 4. Raspbian (containerized inside QEMU)
 5. Docker Compose
 6. Ansible (on host)
-
-Please see main article [here](https://appfleet.com/blog/raspberry-pi-cluster-emulation-with-docker-compose/).
