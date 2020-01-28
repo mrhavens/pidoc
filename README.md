@@ -2,9 +2,9 @@
 
 ## TL;DR
 
-Use pidoc's autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
+An autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
 
-pidoc's stack:
+Stack:
 1. Linux (host OS)
 2. Docker
 3. QEMU (containerized inside Docker)
