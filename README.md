@@ -18,3 +18,9 @@ Stack:
 4. Raspbian (containerized inside QEMU)
 5. Docker Compose
 6. Ansible (on host)
+
+## Attribution
+
+Thanks goes to:
+- [Luke Childs](https://github.com/lukechilds) for [dockerpi](https://github.com/lukechilds/dockerpi)
+- [Dhruv Vyas](https://github.com/dhruvvyas90) for qemu-rpi-kernel(https://github.com/dhruvvyas90/qemu-rpi-kernel)
