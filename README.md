@@ -29,7 +29,7 @@ docker build -t pidoc .
 
 ### Configure Cluster
 
-Docker Compose is used for cluster creation. `ssh` is redirected from port 2222 inside the container to random ports within the specified range, as below.
+Docker Compose is used for cluster creation. `ssh` is redirected from port `2222` inside the container to random ports within the specified range, as below.
 
 ```
 # docker-compose.yml
