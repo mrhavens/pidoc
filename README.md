@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="pidoc.png">
+	<img width="256" src="pidoc.png">
 </div>
 
 
