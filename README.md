@@ -19,6 +19,37 @@ An autoconfiguring stack to build simple, scalable, and fully binary ARM compati
 5. Docker Compose
 6. Ansible (on host)
 
+### Build Image
+
+In the folder with the `Dockerfile`, we will be building our two containers. The first will be our build container that includes all the dependencies for compiling QEMU, and the other will be our app container for running QEMU.
+
+```
+docker build -t pidoc .
+```
+
+### Configure Cluster
+
+Docker Compose is used for cluster creation. `ssh` is redirected from port 2222 inside the container to random ports within the specified range, as below.
+
+```
+# docker-compose.yml
+version: '3'
+
+services:
+  node:
+    image: pidoc
+    ports:
+      - "2201-2203:2222"
+```
+
+### Build Cluster
+
+To bring up three nodes as configured above with `docker-compose`, use the `--scale` option.
+
+```
+docker-compose up --scale node=3
+```
+
 ## Attribution
 
 Thanks goes to:
