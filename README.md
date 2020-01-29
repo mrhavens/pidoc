@@ -21,7 +21,7 @@ An autoconfiguring stack to build simple, scalable, and fully binary ARM compati
 
 ### Build Image
 
-We will be using the `Dockerfile` to build our two containers. The first will be our build container that includes all the dependencies for compiling QEMU, and the other will be our app container for running QEMU.
+The `Dockerfile` is used to build our two containers. The first will be our build container that includes all the dependencies for compiling QEMU, and the other will be our app container for running QEMU.
 
 ```
 docker build -t pidoc .
