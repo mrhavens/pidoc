@@ -57,6 +57,7 @@ To manage the cluster, once the containers start and Raspbian boots, ssh will be
 Please note of the ports we specified in the `docker-compose.yml` file earlier, and edit your `hosts` inventory accordingly.
 ```
 # hosts inventory
+
 [all:vars]
 ansible_user=pi
 ansible_ssh_pass=raspberry
