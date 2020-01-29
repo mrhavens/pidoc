@@ -11,7 +11,8 @@ Please see main article [here](https://appfleet.com/blog/raspberry-pi-cluster-em
 
 An autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
 
-Stack:
+## Stack
+
 1. Linux (host OS)
 2. Docker
 3. QEMU (containerized inside Docker)
