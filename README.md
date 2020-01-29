@@ -50,6 +50,24 @@ To bring up three nodes as configured above with `docker-compose`, use the `--sc
 docker-compose up --scale node=3
 ```
 
+### Ansible Configuration
+
+To manage the cluster, once the containers start and Raspbian boots, ssh will be enabled and become available to Ansible. A few basic operations are provided here: `update`, `upgrade`, `reboot`, and `shutdown`. These can be expanded as needed to develop a more robust system.
+
+Please note of the ports we specified in the `docker-compose.yml` file earlier, and edit your `hosts` inventory accordingly.
+```
+# hosts
+[all:vars]
+ansible_user=pi
+ansible_ssh_pass=raspberry
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+
+[pidoc-cluster]
+node_1.localhost:2201
+node_2.localhost:2202
+node_3.localhost:2203
+```
+
 ## Attribution
 
 Thanks goes to:
