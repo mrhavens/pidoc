@@ -6,7 +6,7 @@ Please see original article [here](https://appfleet.com/blog/raspberry-pi-cluste
 	<img width="256" src="pidoc.png">
 </div>
 
-## tl;dr
+## TL;DR
 
 An autoconfiguring stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters on Intel or AMD architecture.
 
