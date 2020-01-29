@@ -25,3 +25,4 @@ An autoconfiguring stack to build simple, scalable, and fully binary compatible 
 Thanks goes to:
 - [Luke Childs](https://github.com/lukechilds) for [dockerpi](https://github.com/lukechilds/dockerpi)
 - [Dhruv Vyas](https://github.com/dhruvvyas90) for [qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel)
+- [Pavlos Ratis](https://github.com/dastergon) for [ansible-rpi-cluster](https://github.com/dastergon/ansible-rpi-cluster)
