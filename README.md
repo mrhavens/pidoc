@@ -9,7 +9,7 @@ Please see main article [here](https://appfleet.com/blog/raspberry-pi-cluster-em
 
 ## tl;dr
 
-An autoconfigured stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
+An autoconfiguring stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters running Raspbian.
 
 ## Stack
 
