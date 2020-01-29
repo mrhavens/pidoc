@@ -8,7 +8,7 @@ Please see original article [here](https://appfleet.com/blog/raspberry-pi-cluste
 
 ## TL;DR
 
-An autoconfiguring stack to build simple, scalable, and fully binary compatible Raspberry Pi clusters on Intel or AMD architecture.
+An autoconfiguring stack to build simple, scalable, and fully binary ARM compatible Raspberry Pi clusters on Intel or AMD architecture.
 
 ## Stack
 
