@@ -31,7 +31,7 @@ sudo apt -y install docker-ce
 ### Add Current User to Docker Group
 ```
 sudo usermod -aG docker ${USER}
-exec bash
+exec $SHELL
 ```
 
 ### Clone Repository
