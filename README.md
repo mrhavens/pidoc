@@ -49,6 +49,12 @@ The `Dockerfile` is used to build two containers. The first container is the bui
 docker build -t pidoc .
 ```
 
+### Install Docker Compose
+```
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
 ### Configure Cluster
 
 Docker Compose is used for cluster creation. `ssh` is redirected from port `2222` inside the container to random ports within the specified range, as below.
