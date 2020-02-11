@@ -69,6 +69,14 @@ To bring up three nodes as configured above with `docker-compose`, use the `--sc
 docker-compose up --scale node=3
 ```
 
+### Install Ansible
+
+```
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible -y
+```
+
 ### Ansible Configuration
 
 To manage the cluster, once the containers start and Raspbian boots, ssh will be enabled and become available to Ansible. A few basic operations are provided here: `update`, `upgrade`, `reboot`, and `shutdown`. These can be expanded as needed to develop a more robust system.
