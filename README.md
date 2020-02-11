@@ -28,6 +28,11 @@ sudo apt update
 apt-cache policy docker-ce
 sudo apt -y install docker-ce
 ```
+### Add Current User to Docker Group
+```
+sudo usermod -aG docker ${USER}
+exec bash
+```
 
 ### Clone Repository
 
