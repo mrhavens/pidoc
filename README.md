@@ -19,6 +19,23 @@ An autoconfiguring stack to build simple, scalable, and fully binary ARM compati
 5. Docker Compose
 6. Ansible (on host)
 
+### Install Docker
+```
+sudo apt -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+apt-cache policy docker-ce
+sudo apt -y install docker-ce
+```
+
+### Clone Repository
+
+```
+git clone https://github.com/mrhavens/pidoc.git
+cd pidoc
+```
+
 ### Build Image
 
 The `Dockerfile` is used to build two containers. The first container is the build container that includes all the dependencies for compiling QEMU, and the other is the app container for running QEMU.
