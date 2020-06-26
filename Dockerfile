@@ -2,6 +2,7 @@
 FROM ubuntu AS qemu-system-arm-builder
 ARG QEMU_VERSION=4.2.0
 ENV QEMU_TARBALL="qemu-${QEMU_VERSION}.tar.xz"
+ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /qemu
 
 RUN apt-get update && \
@@ -48,7 +49,7 @@ ADD $RPI_KERNEL_URL /tmp/qemu-rpi-kernel.zip
 
 RUN apt-get update && \
     apt-get -y install \
-			unzip \ 
+			unzip \
 			expect
 RUN cd /tmp && \
     echo "$RPI_KERNEL_CHECKSUM  qemu-rpi-kernel.zip" | sha256sum -c && \
